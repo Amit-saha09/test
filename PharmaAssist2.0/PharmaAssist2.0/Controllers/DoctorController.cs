@@ -27,14 +27,15 @@ namespace PharmaAssist2._0.Controllers
         public ActionResult Edit(int id)
         {
             SpecialistRepository db = new SpecialistRepository();
+            
             Doctor p = new Doctor();
-            p = contex.Get(id);
+            p = contex.Getuserinfo(id);
 
             DoctorSpecialist combodata = new DoctorSpecialist();
             combodata.Doctor = p;
             combodata.Specialists = db.GetAll();
             var q = new BlogPostRepository();
-            ViewData["userblog"] = q.GetUserPosts(id);
+            ViewData["userblog"] = q.GetUserPosts(p.Id);
 
 
             return View(combodata);

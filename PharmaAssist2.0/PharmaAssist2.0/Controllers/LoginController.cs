@@ -69,7 +69,11 @@ namespace PharmaAssist2._0.Controllers
                 {
                     return RedirectToAction("Index", "Admin");
                 }
-                /* Redirect To Pages as per user type
+                else if (Session["logged_type"].Equals("Doctor"))
+                {
+                     return RedirectToAction("Homepage", "Doctor");
+                }
+                /*Redirect To Pages as per user type
                 else if (Session["logged_type"].Equals("Manager"))
                 {
                     // return RedirectToAction("Method_Name_Here", "Manager");
@@ -116,6 +120,10 @@ namespace PharmaAssist2._0.Controllers
                     if (Session["logged_type"].Equals("Admin") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)
                     {
                         return RedirectToAction("Index", "Admin");
+                    }
+                    else if (Session["logged_type"].Equals("Doctor") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)
+                    {
+                         return RedirectToAction("Homepage", "Doctor");
                     }
                     /* Redirect To Pages as per user type
                     else if (Session["logged_type"].Equals("Manager") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)

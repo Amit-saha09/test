@@ -14,7 +14,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-clock"></i>&nbsp;&nbsp;Change 
+                        <i class="fas fa-user-clock"></i>&nbsp;&nbsp;Change
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="/Doctor/Edit/@Session["logged_id"]"><i class="fas fa-edit"></i>&nbsp;&nbsp;Profile Edit</a></li>
@@ -25,9 +25,12 @@
                     <a class="nav-link" href="/BlogPost/Index"><i class="fas fa-flag"></i>&nbsp;&nbsp;Doctors Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/BlogPost/MyBlogs"><i class="fas fa-comments"></i>&nbsp;&nbsp;My Blogs</a>
+                    <a class="nav-link" href="/Doctor/Edit/@Session["logged_id"]"><i class="fas fa-comments"></i>&nbsp;&nbsp;My Blogs</a>
                 </li>
-              
+                <li class="nav-item">
+                    <a class="nav-link" href="/Product/Index"><i class="fas fa-comments"></i>&nbsp;&nbsp;Products</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/ProblemPost/Index"><i class="fas fa-rss-square"></i>&nbsp;&nbsp;Problems Posts</a>
                 </li>
@@ -37,7 +40,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="/Doctor/Edit/@Session["logged_id"]"><i class="fas fa-user"></i>&nbsp;&nbsp;Profile</a></li>
-                        <li><a class="dropdown-item" href="/Login/Edit/@Session["logged_id"]""><i class="fas fa-key"></i>&nbsp;&nbsp;Change Password</a></li>
+                        <li><a class="dropdown-item" href="/Login/Edit/@Session["logged_id"]" "><i class="fas fa-key"></i>&nbsp;&nbsp;Change Password</a></li>
                         <li><a class="dropdown-item" href="/Logout/Index"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</a></li>
                     </ul>
                 </li>
