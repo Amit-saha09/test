@@ -5,20 +5,22 @@
 <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+@RenderPage("~/Views/Doctor/DoctorNavbar.cshtml")
 
 <img src="@Url.Content(Model.Doctor.Image)" width="250" height="250" />
 
 <h2>Edit</h2>
 <div>
+
     @using (Html.BeginForm("Edit", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-group">
             @Html.LabelFor(model => model.Doctor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <label name="Name" >@Model.Doctor.Name<</label>
+                <label name="Name">@Model.Doctor.Name<</label>
                 <input type="hidden" name="Name" value="@Model.Doctor.Name" />
-                 @Html.ValidationMessageFor(model => model.Doctor.Name, "", new { @class = "text-danger" })
-</div>
+                @Html.ValidationMessageFor(model => model.Doctor.Name, "", new { @class = "text-danger" })
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" name="@Model.Doctor.SpecialistId">Specialist Name</label>
@@ -37,7 +39,7 @@
             @Html.LabelFor(model => model.Doctor.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="hidden" name="Email" value="@Model.Doctor.Email" />
-                <label name="Email" >@Model.Doctor.Email</label>
+                <label name="Email">@Model.Doctor.Email</label>
 
             </div>
         </div>
@@ -89,7 +91,7 @@
             @Html.LabelFor(model => model.Doctor.Dob, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="hidden" name="Dob" value="@Model.Doctor.Dob" />
-                <label name="Dob" >@Model.Doctor.Dob</label>
+                <label name="Dob">@Model.Doctor.Dob</label>
 
             </div>
         </div>

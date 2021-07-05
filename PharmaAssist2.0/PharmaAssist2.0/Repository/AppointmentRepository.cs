@@ -8,9 +8,13 @@ namespace PharmaAssist2._0.Repository
 {
     public class AppointmentRepository : Repository<Appointment>
     {
-        public Appointment GetConsumerById(int id)
+        public List<Appointment> GetConsumerById(int id)
         {
-            return this.contex.Appointments.Where(x => x.ConsumerId == id).FirstOrDefault();
+            return this.contex.Appointments.Where(x => x.ConsumerId == id).ToList();
+        }
+        public List<Appointment> GetDoctorById(int id)
+        {
+            return this.contex.Appointments.Where(x => x.DoctorId == id).ToList();
         }
     }
 }
