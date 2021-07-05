@@ -1,0 +1,173 @@
+﻿@model PharmaAssist2._0.Models.ModelView.ProductCategory
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+<div>
+    @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Name" value="@Model.Product.Name" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" name="@Model.Product.CategoryId">Specialist Name</label>
+            <div class="col-md-10">
+                <select name="CategoryId" value="@Model.Product.CategoryId" class="form-control">
+
+                    @foreach (var c in Model.Categories)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.Product.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Imagefile" />
+                </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Genericname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Genericname" value="@Model.Product.Genericname" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Genericname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Brandname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Brandname" value="@Model.Product.Brandname" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Brandname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Introduction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Introduction" value="@Model.Product.Introduction" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Introduction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.AdultDose, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="AdultDose" value="@Model.Product.AdultDose" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.AdultDose, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.ChildDose, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="ChildDose" value="@Model.Product.ChildDose" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.ChildDose, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.RenalDose, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="RenalDose" value="@Model.Product.RenalDose" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.RenalDose, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Administration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Administration" value="@Model.Product.Administration" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Administration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Contraindictions, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Contraindictions" value="@Model.Product.Contraindictions" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Contraindictions, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.SideEffect, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="SideEffect" value="@Model.Product.SideEffect" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.SideEffect, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Warnning, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Warnning" value="@Model.Product.Warnning" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Warnning, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.PregnancyLactation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="PregnancyLactation" value="@Model.Product.PregnancyLactation" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.PregnancyLactation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.TherapeticClass, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="TherapeticClass" value="@Model.Product.TherapeticClass" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.TherapeticClass, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Interaction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Interaction" value="@Model.Product.Interaction" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Interaction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.ModeofAction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="ModeofAction" value="@Model.Product.ModeofAction" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.ModeofAction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Price" value="@Model.Product.Price" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product.Power, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Power" value="@Model.Product.Power" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Product.Power, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" name="Image" value="@Model.Product.Image" />
+
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+
+    }
+</div>
+

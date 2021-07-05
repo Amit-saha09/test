@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PharmaAssist2._0.Models.BlogPost>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="@Url.Content(item.Image)" class="card-img-top" alt="DoctorImage">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Doctor.Name)</h4>
+                <br />
+                <h6 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h6>
+                <p class="card-text"> @Html.DisplayFor(modelItem => item.Description) </p>
+                <a href="/BlogPost/Details/@item.Id" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,141 @@
+﻿@model List<PharmaAssist2._0.Models.Doctor>
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+    <meta name="viewport" content="width=device-width" />
+    <title>PharmaAssist | Doctors Management</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/all.css" />
+</head>
+<body>
+    <!--navbar-->
+    @RenderPage("~/Views/Admin/AdminNavbar.cshtml")
+    <!--/navbar-->
+    <div class="container-fluid" style="padding-top:2vh">
+        <div class="form-floating">
+            <input type="text" class="form-control" id="srchBynameTB" placeholder="Doctor Name">
+            <label for="floatingInput">Search by Doctor Name</label>
+        </div>
+        <br />
+        <div class="container-fluid" align="center"><button type="button" class="btn btn-danger">Print</button></div>
+        <br />
+        <!-- <table class="table table-success table-striped">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">DOB</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Speciality</th>
+                  <th scope="col">Fees</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Login Status</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+              </tr>
+          </thead>
+          <tbody>
+              @if (Model != null || Model.Count > 0)
+              {
+                  int serial = 1;
+
+                  foreach (var data in Model)
+                  {
+                      if (data.Login.LoginStatus == 1)
+                      {
+                          <tr>
+                              <th scope="row">@serial</th>
+                              <td>@data.Name</td>
+                              <td>@data.Login.Email</td>
+                              <td>@data.Dob</td>
+                              <td>@data.Address</td>
+                              <td>@data.Specialist.Name</td>
+                              <td>@data.Fee</td>
+                              <td>@data.Gender</td>
+                              <td><span style="color:green"><i class="fas fa-check-circle"></i></span></td>
+                              <td>Update</td>
+                              <td>@Html.ActionLink("Restrict", "RejectLoginDoctor", new { id = data.Login.Id }, new { @class = "btn btn-danger" })</td>
+                          </tr>
+                      }
+                      else
+                      {
+                          <tr class="table-danger">
+                              <th scope="row">@serial</th>
+                              <td>@data.Name</td>
+                              <td>@data.Login.Email</td>
+                              <td>@data.Dob</td>
+                              <td>@data.Address</td>
+                              <td>@data.SpecialistId</td>
+                              <td>@data.Fee</td>
+                              <td>@data.Gender</td>
+                              <td><span style="color:red"><i class="fas fa-times-circle"></i></span></td>
+                              <td>Update</td>
+                              <td>@Html.ActionLink("Allow", "ApproveLoginDoctor", new { id = data.Login.Id }, new { @class = "btn btn-success" })</td>
+                          </tr>
+                      }
+                      serial += 1;
+                  }
+              }
+              else
+              {
+                  <tr>
+                      <td colspan="11" align="center"><span style="color:red">No Data Found</span></td>
+                  </tr>
+              }
+          </tbody>
+      </table>-->
+    <div class="row">
+        @if (Model != null || Model.Count > 0)
+        {
+            int serial = 1;
+            foreach (var data in Model)
+            {
+                if (data.Login.LoginStatus == 1 && data.Login.RegistrationStatus == 1)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img src="@Url.Content(data.Image)" width="15" height="150" class="card-img-top" alt="DoctorImage">
+                        <div class="card-body">
+                            <h5>@serial</h5>
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => data.Name)</h5>
+                            <p class="card-text"><b>@data.Login.Email</b></p>
+                            <p class="card-text"><b>Specialist:</b> @Html.DisplayFor(modelItem => data.Specialist.Name) </p>
+                            <p class="card-text"><b>Login Status : </b><span style="color:green"><i class="fas fa-check-circle"></i></span> </p>
+                            @Html.ActionLink("Restrict", "RejectLoginDoctor", new { id = data.Login.Id }, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                }
+                else if(data.Login.LoginStatus == 2 && data.Login.RegistrationStatus == 1)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img src="@Url.Content(data.Image)" width="15" height="150" class="card-img-top" alt="DoctorImage">
+                        <div class="card-body">
+                            <h5>@serial</h5>
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => data.Name)</h5>
+                            <p class="card-text"><b>@data.Login.Email</b></p>
+                            <p class="card-text"><b>Specialist:</b> @Html.DisplayFor(modelItem => data.Specialist.Name) </p>
+                            <p class="card-text"><b>Login Status : </b><span style="color:red"><i class="fas fa-times-circle"></i></span> </p>
+                            @Html.ActionLink("Allow", "ApproveLoginDoctor", new { id = data.Login.Id }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                }
+                else{ }
+                serial += 1;
+            }
+        }
+        else
+        {
+        }
+
+    </div>
+
+    </div>
+</body>
+</html>

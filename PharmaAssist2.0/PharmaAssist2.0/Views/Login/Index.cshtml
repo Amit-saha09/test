@@ -1,0 +1,50 @@
+﻿@model PharmaAssist2._0.Models.Login
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PharmaAssist | SignIn</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/all.css" />
+</head>
+<body class="bg-secondary">
+    <form method="post">
+        @RenderPage("~/Views/Shared/HomeNavbar.cshtml")
+        <div class="container-fluid" align="middle" style="padding-top: 18vh;">
+            <!-- Login Div -->
+            <div class="card mb-3 col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card-header text-black-50 bg-light">
+                    <h3>Login &nbsp; <i class="fas fa-spinner fa-spin"></i></h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <span style="color:red">@TempData["error"]</span>
+                    <br />
+                    Forgot Password?&nbsp;<a href="#">Click Here</a>
+                    <br />
+                    Don't have any account?&nbsp;<a href="/Login/Registration">Register Here</a>
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-primary" id="loginBTN" name="loginBTN" style="width: 100%;">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+

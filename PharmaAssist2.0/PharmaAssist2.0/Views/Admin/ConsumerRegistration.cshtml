@@ -1,0 +1,76 @@
+﻿@model List<PharmaAssist2._0.Models.Consumer>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>PharmaAssist | Pending Registrations(Consumer)</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/all.css" />
+</head>
+<body>
+    <!--navbar-->
+    @RenderPage("~/Views/Admin/AdminNavbar.cshtml")
+    <!--/navbar-->
+    <div class="container-fluid" style="padding-top:2vh">
+        <div class="container-fluid" align="center">
+            <a class="btn btn-primary" href="/Admin/ApproveAllConsumerRegistration" role="button">Approve All</a>
+        </div>
+        <br />
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    int serial = 1;
+
+                    foreach (var data in Model)
+                    {
+                        if (data.Login.LoginStatus == 2 && data.Login.RegistrationStatus == 3)
+                        {
+                            <tr>
+                                <th scope="row">@serial</th>
+                                <td>@data.Name</td>
+                                <td>@data.Login.Email</td>
+                                <td>@data.Dob</td>
+                                <td>@data.Address</td>
+                                <td>@data.Phone</td>
+                                <td>@data.Gender</td>
+                                <td>@Html.ActionLink("Approve", "ApproveConsumerRegistration", new { id = data.Login.Id }, new { @class = "btn btn-success" })</td>
+                                <td>@Html.ActionLink("Reject", "RejectConsumerRegistration", new { id = data.Login.Id }, new { @class = "btn btn-danger" })</td>
+                            </tr>
+                        }
+
+                        serial += 1;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10" align="center"><span style="color:red">No Data Found</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

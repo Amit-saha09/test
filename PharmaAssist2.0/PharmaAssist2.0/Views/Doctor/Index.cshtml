@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PharmaAssist2._0.Models.Doctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<h2>Index</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="card" style="width: 18rem;">
+            <img src="@Url.Content(item.Image)" class="card-img-top" alt="DoctorImage">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                <p class="card-text"><b>Specialist:</b> @Html.DisplayFor(modelItem => item.Specialist.Name) </p>
+                <a href="/Doctor/Details/@item.Id" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+
+
+
+    }
+</div>
