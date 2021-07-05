@@ -30,6 +30,10 @@ namespace PharmaAssist2._0.Models
         public int Salary { get; set; }
         [Required]
         public DateTime Dob { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public HttpPostedFileBase Imagefile { get; set; }
+
         public virtual Login Login { get; set; }
     }
 }

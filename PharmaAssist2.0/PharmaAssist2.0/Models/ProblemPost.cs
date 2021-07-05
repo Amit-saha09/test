@@ -16,6 +16,8 @@ namespace PharmaAssist2._0.Models
         public int ConsumerId { get; set; }
         [Required]
         public string Image { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public HttpPostedFileBase Imagefile { get; set; }
         public virtual Consumer Consumer { get; set; }
     }
 }

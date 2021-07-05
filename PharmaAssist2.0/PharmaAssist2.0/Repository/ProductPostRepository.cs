@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PharmaAssist2._0.Repository
 {
-    public class ProductRepository: Repository<Product>
+    public class ProductPostRepository: Repository<Product>
     {
     }
 }

@@ -12,10 +12,10 @@ namespace PharmaAssist2._0.Controllers
 {
     public class ConsumerController : Controller
     {
-        /*ConsumerRepository context = new ConsumerRepository();
+        ConsumerRepository context = new ConsumerRepository();
         ProblemPostRepository bcontext = new ProblemPostRepository();
         DoctorRepository acontext = new DoctorRepository();
-        AppointmentRepository ccontext = new AppointmentRepository();*/
+        AppointmentRepository ccontext = new AppointmentRepository();
         // GET: Consumer
         public ActionResult Index()
         {
@@ -23,7 +23,31 @@ namespace PharmaAssist2._0.Controllers
             return View();
         }
 
-        /*public ActionResult FindDoctor()
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Consumer c)
+        {
+            Session["logged_id"] = 1;
+
+
+            string filename = Path.GetFileNameWithoutExtension(c.Imagefile.FileName);
+            string extention = Path.GetExtension(c.Imagefile.FileName);
+            filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
+            c.Image = "~/Image/" + filename;
+            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+            c.Imagefile.SaveAs(filename);
+
+
+            var x = context.GetConsumerById(Session["logged_id"].GetHashCode());
+            c.LoginId = x.Id;
+            return View(c);
+        }
+
+        public ActionResult FindDoctor()
         {
             var finddoctor = acontext.GetAll();
             return View(finddoctor);
@@ -32,20 +56,20 @@ namespace PharmaAssist2._0.Controllers
         public ActionResult ProblemPost()
         {
 
-            *//*ConsumerRepository PPRepo = new ConsumerRepository();
-            ViewData["problemposts"] = PPRepo.GetAll();*//*
+            ConsumerRepository PPRepo = new ConsumerRepository();
+            ViewData["problemposts"] = PPRepo.GetAll();
 
             ProblemPost dm = new ProblemPost();
 
             return View();
 
-        }*/
-        /*[HttpPost]
+        }
+        [HttpPost]
         public ActionResult ProblemPost(ProblemPost p)
         {
             Session["logged_email"] = "john@gmail.com";
 
-            *//* ProblemPost pp = new ProblemPost();*//*
+            ProblemPost pp = new ProblemPost();
 
             string filename = Path.GetFileNameWithoutExtension(p.Imagefile.FileName);
             string extention = Path.GetExtension(p.Imagefile.FileName);
@@ -59,9 +83,9 @@ namespace PharmaAssist2._0.Controllers
             p.ConsumerId = x.Id;
             bcontext.Insert(p);
             return RedirectToAction("Index");
-        }*/
+        }
 
-        /*[HttpGet]
+        [HttpGet]
         public ActionResult Appointment()
         {
             SlotRepository sl = new SlotRepository();
@@ -88,7 +112,7 @@ namespace PharmaAssist2._0.Controllers
             ap.DoctorId = y.Id;
             ccontext.Insert(ap);
             return RedirectToAction("Index");
-        }*/
+        }
 
     }
 }

@@ -28,6 +28,10 @@ namespace PharmaAssist2._0.Models
         public string Gender { get; set; }
         [Required]
         public DateTime Dob { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public HttpPostedFileBase Imagefile { get; set; }
+
         public virtual Login Login { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual ICollection<ProblemPost> ProblemPosts { get; set; }

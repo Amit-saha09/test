@@ -12,7 +12,7 @@ namespace PharmaAssist2._0.Controllers
 {
     public class ProductController : Controller
     {
-        ProductRepository contex = new ProductRepository();
+        ProductPostRepository contex = new ProductPostRepository();
         // GET: Product
         public ActionResult Index()
         {
