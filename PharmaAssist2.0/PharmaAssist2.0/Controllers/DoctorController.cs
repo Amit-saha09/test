@@ -64,14 +64,21 @@ namespace PharmaAssist2._0.Controllers
         }
         public ActionResult Create()
         {
-            SpecialistRepository db = new SpecialistRepository();
-            Doctor p = new Doctor();
-           
-            DoctorSpecialist combodata = new DoctorSpecialist();
-            combodata.Doctor = p;
-            combodata.Specialists = db.GetAll();
-            
-            return View(combodata);
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
+            {
+                return RedirectToAction("Registration", "Login");
+            }
+            else
+            {
+                SpecialistRepository db = new SpecialistRepository();
+                Doctor p = new Doctor();
+
+                DoctorSpecialist combodata = new DoctorSpecialist();
+                combodata.Doctor = p;
+                combodata.Specialists = db.GetAll();
+
+                return View(combodata);
+            }
 
 
 
@@ -80,21 +87,30 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult Create(Doctor doc)
         {
-            string filename = Path.GetFileNameWithoutExtension(doc.Imagefile.FileName);
-            string extention = Path.GetExtension(doc.Imagefile.FileName);
-            filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
-            doc.Image = "~/Image/" + filename;
-            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
-            doc.Imagefile.SaveAs(filename);
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
+            {
+                return RedirectToAction("Registration", "Login");
+            }
+            else
+            {
 
-            var log = new LoginRepository();
-            Login lo = new Login();
 
-            lo = log.Getthat(Session["regemail"].ToString());
-            doc.LoginId = lo.Id;
-            doc.Email = Session["regemail"].ToString();
-            contex.Insert(doc);
-            return RedirectToAction("Index");
+                string filename = Path.GetFileNameWithoutExtension(doc.Imagefile.FileName);
+                string extention = Path.GetExtension(doc.Imagefile.FileName);
+                filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
+                doc.Image = "~/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                doc.Imagefile.SaveAs(filename);
+
+                var log = new LoginRepository();
+                Login lo = new Login();
+
+                lo = log.Getthat(Session["regemail"].ToString());
+                doc.LoginId = lo.Id;
+                doc.Email = Session["regemail"].ToString();
+                contex.Insert(doc);
+                return RedirectToAction("Registration", "Login");
+            }
 
 
 
@@ -103,7 +119,24 @@ namespace PharmaAssist2._0.Controllers
 
         }
 
-        
+        public ActionResult Homepage()
+        {
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
+
+           
+
+
+
+        }
+
+
 
 
 

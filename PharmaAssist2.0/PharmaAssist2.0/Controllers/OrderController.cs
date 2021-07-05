@@ -66,5 +66,18 @@ namespace PharmaAssist2._0.Controllers
 
             return RedirectToAction("Index", "Product");
         }
+
+        public ActionResult MyOrderHistory()
+        {
+            Session["logged_id"] = 1;
+            return View(contex.GetMyOrders((int)Session["logged_id"]));
+
+        }
+        public ActionResult MyOrderDetails(int id)
+        {
+            return View(ordercontex.GetInvoiceHistory(id));
+
+        }
+
     }
 }

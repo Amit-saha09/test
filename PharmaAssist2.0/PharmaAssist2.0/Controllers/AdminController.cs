@@ -40,56 +40,6 @@ namespace PharmaAssist2._0.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult AdminsManagement(FormCollection form)
-        {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Admin"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                Login loginToInsert = new Login();
-                loginToInsert.Email = form["emailTB"];
-                loginToInsert.Password = form["passTB"];
-                loginToInsert.LoginStatus = 1;
-                loginToInsert.RegistrationStatus = 1;
-                loginToInsert.Type = "Admin";
-
-                LoginRepository lr = new LoginRepository();
-                int id = lr.InsertLoginGetID(loginToInsert);
-
-                if (id < 1)
-                {
-                    TempData["error"] = "Try Again. Maybe Email Exists.";
-                }
-                else
-                {
-                    Admin adminToInsert = new Admin();
-                    adminToInsert.Name = form["nameTB"];
-                    adminToInsert.Phone = form["phoneTB"];
-                    adminToInsert.Address = form["addressTB"];
-                    adminToInsert.Image = "~/Image/PharmaAssist_Default_User_Image.png";
-                    adminToInsert.Gender = form["gender"];
-                    adminToInsert.Salary = Int32.Parse(form["salaryTB"]);
-                    adminToInsert.Dob = DateTime.Parse(form["dobTB"]);
-                    adminToInsert.LoginId = id;
-
-                    AdminRepository ar = new AdminRepository();
-
-                    bool insertion = ar.InsertAdmin(adminToInsert);
-
-                    if (!insertion)
-                    {
-                        TempData["error"] = "Something Went Wrong";
-                    }
-                }
-
-
-                return RedirectToAction("AdminsManagement");
-            }
-        }
-
         [HttpGet]
         public ActionResult ApproveLoginAdmin(int id)
         {
@@ -117,7 +67,7 @@ namespace PharmaAssist2._0.Controllers
                 LoginRepository lr = new LoginRepository();
                 lr.UpdateLoginStatus(id, 2);
                 return RedirectToAction("AdminsManagement");
-            }
+            }        
         }
 
         [HttpGet]
@@ -140,7 +90,7 @@ namespace PharmaAssist2._0.Controllers
                 ManagerRepository mr = new ManagerRepository();
                 var managers = mr.GetAll();
                 return View(managers);
-            }
+            }          
         }
 
         [HttpGet]
@@ -155,7 +105,7 @@ namespace PharmaAssist2._0.Controllers
                 LoginRepository lm = new LoginRepository();
                 lm.UpdateLoginStatus(id, 1);
                 return RedirectToAction("ManagersManagement");
-            }
+            }         
         }
 
         [HttpGet]
@@ -186,7 +136,7 @@ namespace PharmaAssist2._0.Controllers
                 var doctors = dr.GetAll();
                 return View(doctors);
             }
-
+            
         }
 
         [HttpGet]
@@ -276,67 +226,6 @@ namespace PharmaAssist2._0.Controllers
                 LoginRepository lm = new LoginRepository();
                 lm.AproveAllPendingDoctors();
                 return RedirectToAction("DoctorRegistration");
-            }
-        }
-
-
-        [HttpGet]
-        public ActionResult ConsumerRegistration()
-        {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Admin"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                ConsumerRepository dr = new ConsumerRepository();
-                var consumers = dr.GetAll();
-                return View(consumers);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult ApproveConsumerRegistration(int id)
-        {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Admin"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                LoginRepository lm = new LoginRepository();
-                lm.ApproveUserRegistration(id);
-                return RedirectToAction("ConsumerRegistration");
-            }
-        }
-
-        [HttpGet]
-        public ActionResult RejectConsumerRegistration(int id)
-        {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Admin"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                LoginRepository lm = new LoginRepository();
-                lm.RejectUserUserRegistration(id);
-                return RedirectToAction("ConsumerRegistration");
-            }
-        }
-
-        [HttpGet]
-        public ActionResult ApproveAllConsumerRegistration()
-        {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Admin"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                LoginRepository lm = new LoginRepository();
-                lm.AproveAllPendingConsumers();
-                return RedirectToAction("ConsumerRegistration");
             }
         }
     }

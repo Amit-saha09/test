@@ -15,5 +15,12 @@ namespace PharmaAssist2._0.Repository
             p = this.contex.Orders.Where(x => x.InvoiceNumber == invoice && x.ConsumerId == id).FirstOrDefault() ;
             return p;
         }
+
+        public List<Order> GetMyOrders(int id)
+        {
+            var p = new List<Order>();
+            p = this.contex.Orders.Where(x =>x.ConsumerId == id).ToList();
+            return p;
+        }
     }
 }

@@ -8,5 +8,9 @@ namespace PharmaAssist2._0.Repository
 {
     public class OrderDetailsRepository:Repository<OrderDetail>
     {
+        public List<OrderDetail> GetInvoiceHistory(int id)
+        {
+            return this.contex.OrderDetails.Where(x => x.OrderId == id).ToList();
+        }
     }
 }

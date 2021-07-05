@@ -38,12 +38,6 @@ namespace PharmaAssist2._0.Repository
             return p;
         }
 
-        public Login GetByEmail(Login user)
-        {
-            var p = this.contex.Logins.Where(x => x.Email.Equals(user.Email)).FirstOrDefault();
-            return p;
-        }
-
         public List<Login> GetPendings(string usertype)
         {
 
@@ -78,41 +72,6 @@ namespace PharmaAssist2._0.Repository
             using (var p2 = new PharmaAssistDB())
             {
                 int e = p2.Database.ExecuteSqlCommand("UPDATE Logins SET LoginStatus = '1', RegistrationStatus = '1' WHERE RegistrationStatus = '3' AND Type = 'Doctor';");
-            }
-        }
-
-        public void AproveAllPendingConsumers()
-        {
-            using (var p2 = new PharmaAssistDB())
-            {
-                int e = p2.Database.ExecuteSqlCommand("UPDATE Logins SET LoginStatus = '1', RegistrationStatus = '1' WHERE RegistrationStatus = '3' AND Type = 'Consumer';");
-            }
-        }
-
-        public int GetLastID()
-        {
-            using (var p2 = new PharmaAssistDB())
-            {
-                int e = p2.Database.ExecuteSqlCommand("SELECT IDENT_CURRENT('logins');");
-
-                return e;
-            }
-        }
-
-        public int InsertLoginGetID(Login user)
-        {
-            try
-            {
-                user.Id = this.GetLastID() + 1;
-                this.contex.Logins.Add(user);
-
-                var insertedUser = this.GetByEmail(user);
-
-                return (int)insertedUser.Id;
-            }
-            catch(Exception ex)
-            {
-                return 0;
             }
         }
     }

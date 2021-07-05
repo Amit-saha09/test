@@ -8,14 +8,9 @@ namespace PharmaAssist2._0.Repository
 {
     public class ConsumerRepository : Repository<Consumer>
     {
-        public Consumer GetConsumerByEmail(string email)
+        public Consumer GetbyLogin(int id)
         {
-            return this.contex.Consumers.Where(x => x.Email == email).FirstOrDefault();
-        }
-
-        public Consumer GetConsumerById(int id)
-        {
-            return this.contex.Consumers.Where(x => x.Id == id).FirstOrDefault();
+            return this.contex.Consumers.Where(x => x.LoginId == id).FirstOrDefault();
         }
     }
 }

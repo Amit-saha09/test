@@ -33,7 +33,6 @@
                     <th scope="col">Email</th>
                     <th scope="col">DOB</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Contact</th>
                     <th scope="col">Fees</th>
                     <th scope="col">Gender</th>
                     <th scope="col"></th>
@@ -49,19 +48,18 @@
                     {
                         if (data.Login.LoginStatus == 2 && data.Login.RegistrationStatus == 3)
                         {
-                <tr>
-                    <th scope="row">@serial</th>
-                    <td>@data.Name</td>
-                    <td>@data.Specialist.Name</td>
-                    <td>@data.Login.Email</td>
-                    <td>@data.Dob</td>
-                    <td>@data.Address</td>
-                    <td>@data.Phone</td>
-                    <td>@data.Fee</td>
-                    <td>@data.Gender</td>
-                    <td>@Html.ActionLink("Approve", "ApproveDoctorRegistration", new { id = data.Login.Id }, new { @class = "btn btn-success" })</td>
-                    <td>@Html.ActionLink("Reject", "RejectDoctorRegistration", new { id = data.Login.Id }, new { @class = "btn btn-danger" })</td>
-                </tr>
+                            <tr>
+                                <th scope="row">@serial</th>
+                                <td>@data.Name</td>
+                                <td>@data.Login.Email</td>
+                                <td>@data.Dob</td>
+                                <td>@data.Address</td>
+                                <td>@data.Specialist.Name</td>
+                                <td>@data.Fee</td>
+                                <td>@data.Gender</td>
+                                <td>@Html.ActionLink("Approve", "ApproveDoctorRegistration", new { id = data.Login.Id }, new { @class = "btn btn-success" })</td>
+                                <td>@Html.ActionLink("Reject", "RejectDoctorRegistration", new { id = data.Login.Id }, new { @class = "btn btn-danger" })</td>
+                            </tr>
                         }
 
                         serial += 1;
@@ -70,7 +68,7 @@
                 else
                 {
                     <tr>
-                        <td colspan="11" align="center"><span style="color:red">No Data Found</span></td>
+                        <td colspan="10" align="center"><span style="color:red">No Data Found</span></td>
                     </tr>
                 }
             </tbody>

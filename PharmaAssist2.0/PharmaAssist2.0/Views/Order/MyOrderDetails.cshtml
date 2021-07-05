@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PharmaAssist2._0.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "MyOrderDetails";
+}
+
+
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>My Chart</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/all.css" />
+</head>
+<body>
+
+    <div class="container-fluid" style="padding-top:2vh">
+
+        <div class="container-fluid" align="center"><button type="button" class="btn btn-danger">Print</button></div>
+        <br />
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                   
+
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    int serial = 1;
+
+                    foreach (var data in Model)
+                    {
+
+                        <tr>
+                            <th scope="row">@serial</th>
+                            <td>@data.Product.Name</td>
+                            <td>@data.Quantity</td>
+                            <td>@data.Product.Price</td>
+                           
+
+
+                           
+
+                        </tr>
+
+                        serial += 1;
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" align="center"><span style="color:red">No product Found</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <br />
+        <hr />
+        <br />
+
+
+
+    </div>
+</body>
+</html>

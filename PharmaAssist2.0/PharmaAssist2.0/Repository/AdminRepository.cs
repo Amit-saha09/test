@@ -13,21 +13,5 @@ namespace PharmaAssist2._0.Repository
             return this.contex.Admins.Where(x => x.Name.Contains(name)).ToList();
         }
 
-        public bool InsertAdmin(Admin user)
-        {
-            try
-            {
-                this.contex.Admins.Add(user);
-
-
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
     }
 }

@@ -17,35 +17,9 @@ namespace PharmaAssist2._0.Controllers
         DoctorRepository acontext = new DoctorRepository();
         AppointmentRepository ccontext = new AppointmentRepository();
         // GET: Consumer
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Create(Consumer c)
-        {
-            string filename = Path.GetFileNameWithoutExtension(c.Imagefile.FileName);
-            string extention = Path.GetExtension(c.Imagefile.FileName);
-            filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
-            c.Image = "~/Image/" + filename;
-            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
-            c.Imagefile.SaveAs(filename);
-
-            Session["logged_id"] = 1;
-            ConsumerRepository PPRepo = new ConsumerRepository();
-            var x = PPRepo.GetConsumerById(Session["logged_id"].GetHashCode());
-            c.LoginId = x.Id;
-            context.Insert(c);
-            return RedirectToAction("Index");
-           
-        }
-
-
         public ActionResult Index()
         {
-
+       
             return View();
         }
 
@@ -64,14 +38,14 @@ namespace PharmaAssist2._0.Controllers
             ProblemPost dm = new ProblemPost();
 
             return View();
-
+          
         }
         [HttpPost]
         public ActionResult ProblemPost(ProblemPost p)
         {
             Session["logged_email"] = "john@gmail.com";
 
-            /* ProblemPost pp = new ProblemPost();*/
+           /* ProblemPost pp = new ProblemPost();*/
 
             string filename = Path.GetFileNameWithoutExtension(p.Imagefile.FileName);
             string extention = Path.GetExtension(p.Imagefile.FileName);
@@ -103,9 +77,9 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult Appointment(Appointment ap, int id)
         {
-
+            
             Session["logged_id"] = 1;
-
+           
             AppointmentRepository APRepo = new AppointmentRepository();
             ConsumerRepository PPRepo = new ConsumerRepository();
             var x = PPRepo.GetConsumerById(Session["logged_id"].GetHashCode());
