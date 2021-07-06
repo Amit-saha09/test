@@ -1,10 +1,10 @@
-﻿@model List<PharmaAssist2._0.Models.Admin>
+﻿@model List<PharmaAssist2._0.Models.DeliveryMan>
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PharmaAssist | Admins Management</title>
+    <title>PharmaAssist | Deliveryman Management</title>
 
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -30,17 +30,19 @@
     <form method="post">
         <div class="container-fluid" style="padding-top:2vh">
             <!--AddModal
+            <!-- Button trigger modal
             <div align="center">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add New Admin
+                    Add New Deliveryman
                 </button>
             </div>
 
+            <!-- Modal
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Admin</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Add Deliveryman</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -89,15 +91,13 @@
                 </div>
             </div>
             <div style="padding-top:2vh"></div>
-            -->
-
-
+            <!--/AddModal-->
             <div style="padding-bottom: 2vh" align="center">
-                <a class="btn btn-primary" href="/Admin/AdminCreate" role="button">Add New Admin</a>
+                <a class="btn btn-primary" href="/Admin/DeliverymanCreate" role="button">Add New Deliveryman</a>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="srchBynameTB" placeholder="Admin Name">
-                <label for="floatingInput">Search by Admin Name</label>
+                <label for="floatingInput">Search by Deliveryman Name</label>
             </div>
             <br />
             <div class="container-fluid" align="center"><button type="button" class="btn btn-danger" onclick="printContent()">Print</button></div>
@@ -135,8 +135,8 @@
                                     <td>@data.Salary</td>
                                     <td>@data.Gender</td>
                                     <td><span style="color:green"><i class="fas fa-check-circle"></i></span></td>
-                                    <td>@Html.ActionLink("Update", "AdminUpdate", new { id = data.Id }, new { @class = "btn btn-warning" })</td>
-                                    <td>@Html.ActionLink("Restrict", "RejectLoginAdmin", new { id = data.Login.Id }, new { @class = "btn btn-danger" })</td>
+                                    <td>@Html.ActionLink("Update", "DeliverymanUpdate", new { id = data.Id }, new { @class = "btn btn-warning" })</td>
+                                    <td>@Html.ActionLink("Restrict", "RejectLoginDeliveryman", new { id = data.Login.Id }, new { @class = "btn btn-danger" })</td>
                                 </tr>
                             }
                             else
@@ -150,8 +150,8 @@
                                     <td>@data.Salary</td>
                                     <td>@data.Gender</td>
                                     <td><span style="color:red"><i class="fas fa-times-circle"></i></span></td>
-                                    <td>@Html.ActionLink("Update", "AdminUpdate", new { id = data.Id }, new { @class = "btn btn-warning" })</td>
-                                    <td>@Html.ActionLink("Allow", "ApproveLoginAdmin", new { id = data.Login.Id }, new { @class = "btn btn-success" })</td>
+                                    <td>@Html.ActionLink("Update", "DeliverymanUpdate", new { id = data.Id }, new { @class = "btn btn-warning" })</td>
+                                    <td>@Html.ActionLink("Allow", "ApproveLoginDeliveryman", new { id = data.Login.Id }, new { @class = "btn btn-success" })</td>
                                 </tr>
                             }
                             serial += 1;
@@ -165,6 +165,7 @@
                     }
                 </tbody>
             </table>
+
             <div id="content" name="content" hidden>
                 <table class="table table-success table-striped">
                     <thead>

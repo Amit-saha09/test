@@ -1,0 +1,53 @@
+﻿@model PharmaAssist2._0.Models.Login
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PharmaAssist | Change Password</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/all.css" />
+</head>
+<body>
+    <!--navbar-->
+    @if (Session["logged_type"].Equals("Admin"))
+    {
+        @RenderPage("~/Views/Admin/AdminNavbar.cshtml");
+    }
+    <!--/navbar-->
+    <form method="post">
+        <div class="container-fluid" align="middle" style="padding-top: 18vh;">
+            <!-- Login Div -->
+            <div class="card mb-3 col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card-header text-black-50 bg-light">
+                    <h3>Change Password</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-floating mb-2">
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                        <label for="floatingPassword">Current Password</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required>
+                        <label for="floatingPassword">New Password</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" id="connewPassword" name="connewPassword" placeholder="Password" required>
+                        <label for="floatingPassword">Confirm Password</label>
+                    </div>
+                    <span style="color:red">@TempData["Error"]</span>
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-primary" id="changeBTN" name="changeBTN" style="width: 100%;">Change Proceed</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

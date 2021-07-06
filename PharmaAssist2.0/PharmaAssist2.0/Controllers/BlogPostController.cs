@@ -19,12 +19,20 @@ namespace PharmaAssist2._0.Controllers
         }
         public ActionResult Create()
         {
-            return View();
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Create(BlogPost bp)
         {
-          Session["email"] = "doctor1@gmail.com";
+
+         
             string filename = Path.GetFileNameWithoutExtension(bp.Imagefile.FileName);
             string extention = Path.GetExtension(bp.Imagefile.FileName);
             filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
@@ -35,7 +43,7 @@ namespace PharmaAssist2._0.Controllers
             var log = new DoctorRepository();
             Doctor lo = new Doctor();
 
-            lo = log.Getbyemail(Session["email"].ToString());
+            lo = log.Getbyemail(Session["logged_Email"].ToString());
             bp.DoctorId = lo.Id;
            
             contex.Insert(bp);
@@ -44,17 +52,23 @@ namespace PharmaAssist2._0.Controllers
         }
         public ActionResult Edit(int id)
         {
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else 
+            { 
 
-            
-            var q = new BlogPost();
-            q = contex.Get(id);
-            return View(q);
-
+                var q = new BlogPost();
+                q = contex.Get(id);
+                return View(q);
+             }
+        
         }
         [HttpPost]
         public ActionResult Edit(BlogPost bp)
         {
-            Session["email"] = "doctor1@gmail.com";
+            
             string filename = Path.GetFileNameWithoutExtension(bp.Imagefile.FileName);
             string extention = Path.GetExtension(bp.Imagefile.FileName);
             filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
@@ -65,7 +79,7 @@ namespace PharmaAssist2._0.Controllers
             var log = new DoctorRepository();
             Doctor lo = new Doctor();
 
-            lo = log.Getbyemail(Session["email"].ToString());
+            lo = log.Getbyemail(Session["logged_Email"].ToString());
             bp.DoctorId = lo.Id;
 
             contex.Update(bp);

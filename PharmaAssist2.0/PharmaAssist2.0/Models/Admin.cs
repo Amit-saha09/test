@@ -12,7 +12,7 @@ namespace PharmaAssist2._0.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
+        
         public int? LoginId { get; set; }
         
         public string Phone { get; set; }
@@ -20,6 +20,9 @@ namespace PharmaAssist2._0.Models
         public string Address { get; set; }
         [Required]
         public string Image { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public HttpPostedFileBase Imagefile { get; set; }
         [Required]
         public string Gender { get; set; }
         [Required]

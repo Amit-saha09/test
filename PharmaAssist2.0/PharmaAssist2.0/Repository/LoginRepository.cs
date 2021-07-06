@@ -8,11 +8,12 @@ namespace PharmaAssist2._0.Repository
 {
     public class LoginRepository : Repository<Login>
     {
+       
         public Login Getregistared(string q)
         {
-           
-               var p = this.contex.Logins.Where(x => x.Email == q).FirstOrDefault();
-                return p;
+
+            var p = this.contex.Logins.Where(x => x.Email == q).FirstOrDefault();
+            return p;
 
 
         }
@@ -35,6 +36,18 @@ namespace PharmaAssist2._0.Repository
         public Login GetUser(Login user)
         {
             var p = this.contex.Logins.Where(x => x.Email.Equals(user.Email) && x.Password.Equals(user.Password)).FirstOrDefault();
+            return p;
+        }
+
+        public Login GetUserByID(int id)
+        {
+            var p = this.contex.Logins.Where(x => x.Id == id).FirstOrDefault();
+            return p;
+        }
+
+        public Login GetByEmail(Login user)
+        {
+            var p = this.contex.Logins.Where(x => x.Email.Equals(user.Email)).FirstOrDefault();
             return p;
         }
 
@@ -74,6 +87,40 @@ namespace PharmaAssist2._0.Repository
                 int e = p2.Database.ExecuteSqlCommand("UPDATE Logins SET LoginStatus = '1', RegistrationStatus = '1' WHERE RegistrationStatus = '3' AND Type = 'Doctor';");
             }
         }
+
+        public void AproveAllPendingConsumers()
+        {
+            using (var p2 = new PharmaAssistDB())
+            {
+                int e = p2.Database.ExecuteSqlCommand("UPDATE Logins SET LoginStatus = '1', RegistrationStatus = '1' WHERE RegistrationStatus = '3' AND Type = 'Consumer';");
+            }
+        }
+
+        public int GetLastID()
+        {
+            using (var p2 = new PharmaAssistDB())
+            {
+                int e = p2.Database.ExecuteSqlCommand("SELECT IDENT_CURRENT('logins');");
+
+                return e;
+            }
+        }
+
+        public int InsertLoginGetID(Login user)
+        {
+            try
+            {
+                user.Id = this.GetLastID() + 1;
+                this.contex.Logins.Add(user);
+
+                var insertedUser = this.GetByEmail(user);
+
+                return (int)insertedUser.Id;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
     }
 }
-    
