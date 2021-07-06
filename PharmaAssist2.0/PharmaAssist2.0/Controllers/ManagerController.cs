@@ -43,5 +43,32 @@ namespace PharmaAssist2._0.Controllers
             return View(c);
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+
+            context.GetAll();
+            return View(context.Get(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(Manager c)
+        {
+            //Session["logged_id"] = 1;
+
+            string filename = Path.GetFileNameWithoutExtension(c.Imagefile.FileName);
+            string extention = Path.GetExtension(c.Imagefile.FileName);
+            filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
+            c.Image = "~/Image/" + filename;
+            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+            c.Imagefile.SaveAs(filename);
+
+            var x = context.GetManagerById(Session["logged_id"].GetHashCode());
+            c.LoginId = x.Id;
+
+            context.Update(c);
+            
+            return RedirectToAction("Index");
+        }
+
     }
 }

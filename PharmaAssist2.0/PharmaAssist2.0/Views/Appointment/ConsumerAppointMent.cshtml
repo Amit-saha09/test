@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PharmaAssist2._0.Models.Appointment>
+
+@{
+    ViewBag.Title = "DoctorAppointMent";
+}
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>My Chart</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/all.css" />
+</head>
+<body>
+    @RenderPage("~/Views/Doctor/DoctorNavbar.cshtml")
+
+    <div class="container-fluid" style="padding-top:2vh">
+
+        <div class="container-fluid" align="center"><button type="button" class="btn btn-danger">Print</button></div>
+        <br />
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Slot </th>
+                    <th scope="col">Consumer Name</th>
+                    <th scope="col">Date And Time</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    int serial = 1;
+
+                    foreach (var data in Model)
+                    {
+
+                        <tr>
+                            <th scope="row">@serial</th>
+                            <td>@data.Slot.Name</td>
+                            <td>@data.Consumer.Name</td>
+                            <td>@data.Date</td>
+
+
+                        </tr>
+
+                        serial += 1;
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" align="center"><span style="color:red">No product Found</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <br />
+        <hr />
+
+
+    </div>
+</body>
+</html>

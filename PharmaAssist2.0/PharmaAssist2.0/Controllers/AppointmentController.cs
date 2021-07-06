@@ -13,6 +13,8 @@ namespace PharmaAssist2._0.Controllers
         // GET: Appointment
         AppointmentRepository condex = new AppointmentRepository();
         DoctorRepository dr = new DoctorRepository();
+        ConsumerRepository cm = new ConsumerRepository();
+
         public ActionResult DoctorAppointMent()
         {
             if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
@@ -30,7 +32,13 @@ namespace PharmaAssist2._0.Controllers
         }
         public ActionResult ConsumerAppointMent()
         {
-            return View();
+     
+            Consumer a = new Consumer();
+            a = cm.GetConsumerById((int)Session["logged_Id"]);
+
+
+            return View(condex.GetConsumerById(a.Id));
+            
         }
     }
 }

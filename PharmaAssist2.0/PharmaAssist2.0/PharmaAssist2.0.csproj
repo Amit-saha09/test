@@ -251,6 +251,13 @@
     <Compile Include="Repository\SlotRepository.cs" />
     <Compile Include="Repository\SpecialistRepository.cs" />
     <Compile Include="Repository\ZoneRepository.cs" />
+    <None Include="Views\Manager\ManagerNavbar.cshtml" />
+    <Content Include="Views\Consumer\Appointment.cshtml" />
+    <Content Include="Views\Appointment\ConsumerAppointMent.cshtml" />
+    <None Include="Views\Consumer\ConsumerNavbar.cshtml" />
+    <Content Include="Views\Consumer\Edit.cshtml" />
+    <Content Include="Views\Consumer\MyAppointments.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
@@ -496,7 +503,6 @@
     <Content Include="Views\Consumer\Index.cshtml" />
     <Content Include="Views\Consumer\FindDoctor.cshtml" />
     <Content Include="Views\Consumer\ProblemPost.cshtml" />
-    <Content Include="Views\Consumer\Appointment.cshtml" />
     <Content Include="Views\Consumer\Create.cshtml" />
     <Content Include="Views\Manager\Create.cshtml" />
     <Content Include="Views\Appointment\DoctorAppointMent.cshtml" />

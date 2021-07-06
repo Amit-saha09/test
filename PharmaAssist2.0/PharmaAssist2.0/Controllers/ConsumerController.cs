@@ -31,7 +31,7 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult Create(Consumer c)
         {
-            Session["logged_id"] = 1;
+            
 
 
             string filename = Path.GetFileNameWithoutExtension(c.Imagefile.FileName);
@@ -45,6 +45,32 @@ namespace PharmaAssist2._0.Controllers
             var x = context.GetConsumerById(Session["logged_id"].GetHashCode());
             c.LoginId = x.Id;
             return View(c);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            
+            context.GetAll();
+           return View(context.Get(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(Consumer c)
+        {
+            //Session["logged_id"] = 1;
+
+            string filename = Path.GetFileNameWithoutExtension(c.Imagefile.FileName);
+            string extention = Path.GetExtension(c.Imagefile.FileName);
+            filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
+            c.Image = "~/Image/" + filename;
+            filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+            c.Imagefile.SaveAs(filename);
+
+            var x = context.GetConsumerById(Session["logged_id"].GetHashCode());
+            c.LoginId = x.Id;
+
+            context.Update(c);
+            return RedirectToAction("Index");
         }
 
         public ActionResult FindDoctor()
@@ -67,7 +93,7 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult ProblemPost(ProblemPost p)
         {
-            Session["logged_email"] = "john@gmail.com";
+            
 
             ProblemPost pp = new ProblemPost();
 
@@ -85,15 +111,22 @@ namespace PharmaAssist2._0.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult MyAppointments()
+        {
+            var finddoctor = ccontext.GetAll();
+            return View(finddoctor);
+        }
+
+
         [HttpGet]
         public ActionResult Appointment()
         {
+
             SlotRepository sl = new SlotRepository();
             DoctorRepository dc = new DoctorRepository();
 
             ViewData["slots"] = sl.GetAll();
             ViewData["doctors"] = dc.GetAll();
-
 
             return View();
         }
@@ -102,7 +135,7 @@ namespace PharmaAssist2._0.Controllers
         public ActionResult Appointment(Appointment ap, int id)
         {
 
-            Session["logged_id"] = 1;
+            
 
             AppointmentRepository APRepo = new AppointmentRepository();
             ConsumerRepository PPRepo = new ConsumerRepository();
