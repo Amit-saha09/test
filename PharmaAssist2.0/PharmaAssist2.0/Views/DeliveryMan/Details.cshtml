@@ -8,98 +8,99 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 
 
+<center>
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>DeliveryMan</h4>
+        <hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>DeliveryMan</h4>
-    <hr />
-    <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
+            <dd>
+                <img src="@Url.Content(Model.Image)" width="250" height="250" />
+            </dd>
 
-        <dd>
-            <img src="@Url.Content(Model.Image)" width="250" height="250" />
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LoginId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoginId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LoginId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoginId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ZoneId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ZoneId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ZoneId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ZoneId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Salary)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Dob)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Dob)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Dob)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Dob)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</center>

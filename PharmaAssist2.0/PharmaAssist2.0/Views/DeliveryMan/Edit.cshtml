@@ -6,108 +6,110 @@
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 @RenderPage("~/Views/DeliveryMan/DeliveryManNavbar.cshtml")
-<img src="@Url.Content(Model.DeliveryMan.Image)" width="250" height="250" />
+<center>
+    <img src="@Url.Content(Model.DeliveryMan.Image)" width="250" height="250" />
 
-<h2>Edit</h2>
-<div>
-    @using (Html.BeginForm("Edit", "DeliveryMan", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <label name="Name">@Model.DeliveryMan.Name</label>
-                <input type="hidden" name="Name" value="@Model.DeliveryMan.Name" />
-                @Html.ValidationMessageFor(model => model.DeliveryMan.Name, "", new { @class = "text-danger" })
+    <h2>Edit</h2>
+    <div>
+        @using (Html.BeginForm("Edit", "DeliveryMan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <label name="Name">@Model.DeliveryMan.Name</label>
+                    <input type="hidden" name="Name" value="@Model.DeliveryMan.Name" />
+                    @Html.ValidationMessageFor(model => model.DeliveryMan.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2" name="@Model.DeliveryMan.ZoneId">Zone Name</label>
-            <div class="col-md-10">
-                <select name="ZoneId" value="@Model.DeliveryMan.ZoneId" class="form-control">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <label class="control-label col-md-2" name="@Model.DeliveryMan.ZoneId">Zone Name</label>
+                <div class="col-md-10">
+                    <select name="ZoneId" value="@Model.DeliveryMan.ZoneId" class="form-control">
 
-                    @foreach (var c in Model.Zones)
-                    {
-                        <option value="@c.Id">@c.Name</option>
-                    }
-                </select>
-                @Html.ValidationMessageFor(model => model.DeliveryMan.ZoneId, "", new { @class = "text-danger" })
+                        @foreach (var c in Model.Zones)
+                        {
+                            <option value="@c.Id">@c.Name</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.DeliveryMan.ZoneId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="hidden" name="Email" value="@Model.DeliveryMan.Email" />
-                <label name="Email">@Model.DeliveryMan.Email</label>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="hidden" name="Email" value="@Model.DeliveryMan.Email" />
+                    <label name="Email">@Model.DeliveryMan.Email</label>
 
-            </div>
-
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Phone" value="@Model.DeliveryMan.Phone" class="form-control" />
-                @Html.ValidationMessageFor(model => model.DeliveryMan.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Address" value="@Model.DeliveryMan.Address" class="form-control" />
-
-                @Html.ValidationMessageFor(model => model.DeliveryMan.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="Imagefile" />
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select name="Gender" class="form-control">
-
-
-
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.DeliveryMan.Gender, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="number" name="Salary" value="@Model.DeliveryMan.Salary" class="form-control" />
-
-                @Html.ValidationMessageFor(model => model.DeliveryMan.Salary, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryMan.Dob, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="hidden" name="Dob" value="@Model.DeliveryMan.Dob" />
-                <label name="Dob">@Model.DeliveryMan.Dob</label>
+                </div>
 
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="hidden" name="Image" value="@Model.DeliveryMan.Image" />
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="Phone" value="@Model.DeliveryMan.Phone" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.DeliveryMan.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="Address" value="@Model.DeliveryMan.Address" class="form-control" />
 
+                    @Html.ValidationMessageFor(model => model.DeliveryMan.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="Imagefile" />
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="Gender" class="form-control">
+
+
+
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.DeliveryMan.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="number" name="Salary" value="@Model.DeliveryMan.Salary" class="form-control" />
+
+                    @Html.ValidationMessageFor(model => model.DeliveryMan.Salary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.DeliveryMan.Dob, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="hidden" name="Dob" value="@Model.DeliveryMan.Dob" />
+                    <label name="Dob">@Model.DeliveryMan.Dob</label>
+
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="col-md-10">
+                    <input type="hidden" name="Image" value="@Model.DeliveryMan.Image" />
+
+
+                </div>
 
             </div>
-
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
             </div>
-        </div>
 
-    }
-</div>
+        }
+    </div>
 
 
+</center>

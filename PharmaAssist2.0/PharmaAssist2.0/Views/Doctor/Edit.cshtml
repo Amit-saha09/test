@@ -6,129 +6,130 @@
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 @RenderPage("~/Views/Doctor/DoctorNavbar.cshtml")
+<center>
+    <img src="@Url.Content(Model.Doctor.Image)" width="250" height="250" />
 
-<img src="@Url.Content(Model.Doctor.Image)" width="250" height="250" />
+    <h2>Edit</h2>
+    <div>
 
-<h2>Edit</h2>
-<div>
-
-    @using (Html.BeginForm("Edit", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <label name="Name">@Model.Doctor.Name<</label>
-                <input type="hidden" name="Name" value="@Model.Doctor.Name" />
-                @Html.ValidationMessageFor(model => model.Doctor.Name, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("Edit", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <label name="Name">@Model.Doctor.Name<</label>
+                    <input type="hidden" name="Name" value="@Model.Doctor.Name" />
+                    @Html.ValidationMessageFor(model => model.Doctor.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2" name="@Model.Doctor.SpecialistId">Specialist Name</label>
-            <div class="col-md-10">
-                <select name="SpecialistId" value="@Model.Doctor.SpecialistId" class="form-control">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <label class="control-label col-md-2" name="@Model.Doctor.SpecialistId">Specialist Name</label>
+                <div class="col-md-10">
+                    <select name="SpecialistId" value="@Model.Doctor.SpecialistId" class="form-control">
 
-                    @foreach (var c in Model.Specialists)
-                    {
-                        <option value="@c.Id">@c.Name</option>
-                    }
-                </select>
-                @Html.ValidationMessageFor(model => model.Doctor.SpecialistId, "", new { @class = "text-danger" })
+                        @foreach (var c in Model.Specialists)
+                        {
+                            <option value="@c.Id">@c.Name</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Doctor.SpecialistId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="hidden" name="Email" value="@Model.Doctor.Email" />
-                <label name="Email">@Model.Doctor.Email</label>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="hidden" name="Email" value="@Model.Doctor.Email" />
+                    <label name="Email">@Model.Doctor.Email</label>
 
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Phone" value="@Model.Doctor.Phone" class="form-control" />
-                @Html.ValidationMessageFor(model => model.Doctor.Phone, "", new { @class = "text-danger" })
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="Phone" value="@Model.Doctor.Phone" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.Doctor.Phone, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="Address" value="@Model.Doctor.Address" class="form-control" />
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="Address" value="@Model.Doctor.Address" class="form-control" />
 
-                @Html.ValidationMessageFor(model => model.Doctor.Address, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Doctor.Address, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="Imagefile" required />
-                @Html.ValidationMessageFor(model => model.Doctor.Image, "", new { @class = "text-danger" })
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="Imagefile" required />
+                    @Html.ValidationMessageFor(model => model.Doctor.Image, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select name="Gender" class="form-control">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="Gender" class="form-control">
 
 
 
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.Doctor.Gender, "", new { @class = "text-danger" })
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Doctor.Gender, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="number" name="Fee" value="@Model.Doctor.Fee" class="form-control" />
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="number" name="Fee" value="@Model.Doctor.Fee" class="form-control" />
 
-                @Html.ValidationMessageFor(model => model.Doctor.Fee, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Doctor.Fee, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Doctor.Dob, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="hidden" name="Dob" value="@Model.Doctor.Dob" />
-                <label name="Dob">@Model.Doctor.Dob</label>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                @Html.LabelFor(model => model.Doctor.Dob, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="hidden" name="Dob" value="@Model.Doctor.Dob" />
+                    <label name="Dob">@Model.Doctor.Dob</label>
 
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
             </div>
-        </div>
 
-    }
-</div>
+        }
+    </div>
+</center>
 
-<h1>Blogs</h1>
+    <h1>Blogs</h1>
 
-<div class="row">
-    @foreach (var item in ViewData["userblog"] as List<PharmaAssist2._0.Models.BlogPost>)
-    {
+    <div class="row">
+        @foreach (var item in ViewData["userblog"] as List<PharmaAssist2._0.Models.BlogPost>)
+        {
 
-        <div class="card" style="width: 18rem;">
-            <img src="@Url.Content(item.Image)" class="card-img-top" alt="DoctorImage">
-            <div class="card-body">
-                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Doctor.Name)</h4>
-                <br />
-                <h6 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h6>
-                <p class="card-text"> @Html.DisplayFor(modelItem => item.Description) </p>
-                <a href="/BlogPost/Details/@item.Id" class="btn btn-primary">Details</a>
-                <a href="/BlogPost/Edit/@item.Id" class="btn btn-primary">BlogEdit</a>
-                <a href="/BlogPost/Delete/@item.Id" class="btn btn-primary">Delete</a>
+            <div class="card" style="width: 18rem;">
+                <img src="@Url.Content(item.Image)" class="card-img-top" alt="DoctorImage">
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Doctor.Name)</h4>
+                    <br />
+                    <h6 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h6>
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Description) </p>
+                    <a href="/BlogPost/Details/@item.Id" class="btn btn-success">Details</a>
+                    <a href="/BlogPost/Edit/@item.Id" class="btn btn-primary">BlogEdit</a>
+                    <a href="/BlogPost/Delete/@item.Id" class="btn btn-danger">Delete</a>
 
+                </div>
             </div>
-        </div>
 
 
 
 
-    }
+        }
 
 
-</div>
+    </div>
 

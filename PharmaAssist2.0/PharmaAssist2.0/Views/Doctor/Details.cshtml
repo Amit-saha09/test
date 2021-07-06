@@ -3,105 +3,105 @@
 @{
     ViewBag.Title = "Details";
 }
+<center>
+    <div>
+        <h4>Doctor</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
 
-<div>
-    <h4>Doctor</h4>
+            <dd>
+                <img src="@Url.Content(Model.Image)" width="250" height="250" />
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Specialist.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Specialist.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fee)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fee)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Dob)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dob)
+            </dd>
+
+        </dl>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
 
-        <dd>
-            <img src="@Url.Content(Model.Image)" width="250" height="250" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <h3>Blogs</h3>
+    <br />
+    <div class="row">
+        @foreach (var item in ViewData["userblog"] as List<PharmaAssist2._0.Models.BlogPost>)
+        {
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Specialist.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Specialist.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fee)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fee)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dob)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dob)
-        </dd>
-
-    </dl>
-</div>
-<hr />
-
-<h3>Blogs</h3>
-<br />
-<div class="row">
-    @foreach (var item in ViewData["userblog"] as List<PharmaAssist2._0.Models.BlogPost>)
-    {
-
-        <div class="card" style="width: 18rem;">
-            <img src="@Url.Content(item.Image)" class="card-img-top" alt="DoctorImage">
-            <div class="card-body">
-                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Doctor.Name)</h4>
-                <br />
-                <h6 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h6>
-                <p class="card-text"> @Html.DisplayFor(modelItem => item.Description) </p>
-                <a href="/Doctor/Details/@item.Id" class="btn btn-primary">Details</a>
+            <div class="card" style="width: 18rem;">
+                <img src="@Url.Content(item.Image)" class="card-img-top" alt="DoctorImage">
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Doctor.Name)</h4>
+                    <br />
+                    <h6 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h6>
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Description) </p>
+                    <a href="/Doctor/Details/@item.Id" class="btn btn-primary">Details</a>
+                </div>
             </div>
-        </div>
 
 
 
 
-    }
-</div>
+        }
+    </div>
 
 
 
-<p>
-    <a href="/Doctor/Index" class="btn btn-primary">Back To List</a>
+    <p>
+        <a href="/Doctor/Index" class="btn btn-primary">Back To List</a>
 
-</p>
-
+    </p>
+</center>
