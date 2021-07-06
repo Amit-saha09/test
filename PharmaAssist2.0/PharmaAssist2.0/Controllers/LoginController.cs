@@ -116,6 +116,7 @@ namespace PharmaAssist2._0.Controllers
                 {
                     Session["logged_id"] = userFromDB.Id;
                     Session["logged_type"] = userFromDB.Type;
+                    Session["logged_Email"] = userFromDB.Email;
 
                     if (Session["logged_type"].Equals("Admin") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)
                     {
@@ -124,6 +125,11 @@ namespace PharmaAssist2._0.Controllers
                     else if (Session["logged_type"].Equals("Doctor") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)
                     {
                          return RedirectToAction("Homepage", "Doctor");
+
+                    }
+                    else if (Session["logged_type"].Equals("DeliveryMan") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)
+                    {
+                         return RedirectToAction("Homepage", "DeliveryMan");
                     }
                     /* Redirect To Pages as per user type
                     else if (Session["logged_type"].Equals("Manager") && userFromDB.LoginStatus == 1 && userFromDB.RegistrationStatus == 1)

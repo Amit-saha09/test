@@ -12,5 +12,9 @@ namespace PharmaAssist2._0.Repository
         {
             return this.contex.DeliveryMens.Where(e=>e.Name.Contains(name)).ToList();
         }
+        public DeliveryMan GetBylogin(int id)
+        {
+            return this.contex.DeliveryMens.Where(e => e.LoginId==id).FirstOrDefault();
+        }
     }
 }

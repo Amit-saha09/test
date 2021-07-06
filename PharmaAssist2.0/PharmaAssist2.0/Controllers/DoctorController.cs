@@ -26,7 +26,15 @@ namespace PharmaAssist2._0.Controllers
         }
         public ActionResult Edit(int id)
         {
-            SpecialistRepository db = new SpecialistRepository();
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+
+              
+                SpecialistRepository db = new SpecialistRepository();
             
             Doctor p = new Doctor();
             p = contex.Getuserinfo(id);
@@ -39,6 +47,7 @@ namespace PharmaAssist2._0.Controllers
 
 
             return View(combodata);
+            }
 
         }
 
@@ -67,7 +76,7 @@ namespace PharmaAssist2._0.Controllers
         {
             if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
             {
-                return RedirectToAction("Registration", "Login");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
@@ -80,6 +89,7 @@ namespace PharmaAssist2._0.Controllers
 
                 return View(combodata);
             }
+            
 
 
 
@@ -90,12 +100,10 @@ namespace PharmaAssist2._0.Controllers
         {
             if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
             {
-                return RedirectToAction("Registration", "Login");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
-
-
                 string filename = Path.GetFileNameWithoutExtension(doc.Imagefile.FileName);
                 string extention = Path.GetExtension(doc.Imagefile.FileName);
                 filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
@@ -111,7 +119,9 @@ namespace PharmaAssist2._0.Controllers
                 doc.Email = Session["regemail"].ToString();
                 contex.Insert(doc);
                 return RedirectToAction("Registration", "Login");
+
             }
+          
 
 
 
@@ -131,7 +141,7 @@ namespace PharmaAssist2._0.Controllers
                 return View();
             }
 
-           
+
 
 
 

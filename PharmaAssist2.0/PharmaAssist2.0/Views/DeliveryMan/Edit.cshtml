@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
-
+@RenderPage("~/Views/DeliveryMan/DeliveryManNavbar.cshtml")
 <img src="@Url.Content(Model.DeliveryMan.Image)" width="250" height="250" />
 
 <h2>Edit</h2>
@@ -60,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DeliveryMan.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="Imagefile"  />
+                <input type="file" name="Imagefile" />
             </div>
         </div>
         <div class="form-group">
@@ -94,9 +94,9 @@
             </div>
         </div>
         <div class="form-group">
-           <div class="col-md-10">
+            <div class="col-md-10">
                 <input type="hidden" name="Image" value="@Model.DeliveryMan.Image" />
-               
+
 
             </div>
 

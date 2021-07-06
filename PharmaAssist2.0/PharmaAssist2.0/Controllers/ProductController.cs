@@ -36,7 +36,7 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult Create(Product pro)
         {
-            Session["regemail"] = "manager@gmail.com";
+           
             string filename = Path.GetFileNameWithoutExtension(pro.Imagefile.FileName);
             string extention = Path.GetExtension(pro.Imagefile.FileName);
             filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
@@ -46,7 +46,7 @@ namespace PharmaAssist2._0.Controllers
             var manager = new Manager();
             var managerrepo = new ManagerRepository();
             
-            manager = managerrepo.GetManagerByEmail(Session["regemail"].ToString());
+            manager = managerrepo.GetManagerByEmail(Session["logged_Email"].ToString());
             pro.ManagerId = manager.Id;
             
             contex.Insert(pro);
@@ -65,13 +65,13 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult Edit(Product dm)
         {
-            Session["regemail"] = "manager@gmail.com";
+           
             if (dm.Imagefile == null)
             {
                 var manager = new Manager();
                 var managerrepo = new ManagerRepository();
 
-                manager = managerrepo.GetManagerByEmail(Session["regemail"].ToString());
+                manager = managerrepo.GetManagerByEmail(Session["logged_Email"].ToString());
                 dm.ManagerId = manager.Id;
 
                 contex.Update(dm);
@@ -90,7 +90,7 @@ namespace PharmaAssist2._0.Controllers
                 var manager = new Manager();
                 var managerrepo = new ManagerRepository();
 
-                manager = managerrepo.GetManagerByEmail(Session["regemail"].ToString());
+                manager = managerrepo.GetManagerByEmail(Session["logged_Email"].ToString());
                 dm.ManagerId = manager.Id;
 
                 contex.Insert(dm);

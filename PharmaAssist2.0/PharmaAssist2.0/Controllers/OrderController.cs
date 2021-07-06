@@ -17,7 +17,7 @@ namespace PharmaAssist2._0.Controllers
         // GET: Order
         public ActionResult Add()
         {
-            Session["logged_id"] = 1;
+           
             OrderDetail od = new OrderDetail();
             Order o = new Order();
             int totalprice = 0;
@@ -69,13 +69,33 @@ namespace PharmaAssist2._0.Controllers
 
         public ActionResult MyOrderHistory()
         {
-            Session["logged_id"] = 1;
+           
             return View(contex.GetMyOrders((int)Session["logged_id"]));
 
         }
         public ActionResult MyOrderDetails(int id)
         {
             return View(ordercontex.GetInvoiceHistory(id));
+
+        }
+        public ActionResult Orderlist()
+        {
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("DeliveryMan"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View(contex.GetAll());
+            }
+
+        }
+        public ActionResult Status(int id)
+        {
+           var p= contex.Get(id);
+            p.StatusId = 1;
+            contex.Update(p);
+            return RedirectToAction("Orderlist", "Order");
 
         }
 

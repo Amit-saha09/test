@@ -59,13 +59,22 @@ namespace PharmaAssist2._0.Controllers
 
         public ActionResult Edit(int id)
         {
-            DeliveryMan dm = new DeliveryMan();
-            ZoneRepository zon = new ZoneRepository();
-            dm = contex.Get(id);
-            DeliveryManZone combbo = new DeliveryManZone();
-            combbo.DeliveryMan = dm;
-            combbo.Zones = zon.GetAll();
-            return View(combbo);
+
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("DeliveryMan"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                DeliveryMan dm = new DeliveryMan();
+                ZoneRepository zon = new ZoneRepository();
+                dm = contex.GetBylogin(id);
+                DeliveryManZone combbo = new DeliveryManZone();
+                combbo.DeliveryMan = dm;
+                combbo.Zones = zon.GetAll();
+                return View(combbo);
+            }
+          
         }
 
         [HttpPost]
@@ -126,6 +135,19 @@ namespace PharmaAssist2._0.Controllers
 
             contex.Delete(id);
             return View("Index");
+        }
+        public ActionResult Homepage()
+        {
+            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("DeliveryMan"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+
+                
+                return View();
+            }
         }
     }
 }
