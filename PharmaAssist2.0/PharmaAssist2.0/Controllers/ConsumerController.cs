@@ -19,28 +19,18 @@ namespace PharmaAssist2._0.Controllers
         // GET: Consumer
         public ActionResult Index()
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+           
 
                 return View();
-            }
+           
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+         
                 return View();
-            }
+            
         }
         [HttpPost]
         public ActionResult Create(Consumer c)
@@ -56,7 +46,7 @@ namespace PharmaAssist2._0.Controllers
             c.Imagefile.SaveAs(filename);
 
 
-            var x = context.GetConsumerById(Session["logged_id"].GetHashCode());
+            var x = context.GetConsumerById((int)Session["logged_id"]);
             c.LoginId = x.Id;
             return View(c);
         }
@@ -64,22 +54,15 @@ namespace PharmaAssist2._0.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-
-                context.GetAll();
-                return View(context.Get(id));
-            }
+        
+                var p = context.Getuserinfo(id);
+                return View(context.Get(p.Id));
+          
         }
         [HttpPost]
         public ActionResult Edit(Consumer c)
         {
-            //Session["logged_id"] = 1;
-
+            
             string filename = Path.GetFileNameWithoutExtension(c.Imagefile.FileName);
             string extention = Path.GetExtension(c.Imagefile.FileName);
             filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
@@ -96,25 +79,16 @@ namespace PharmaAssist2._0.Controllers
 
         public ActionResult FindDoctor()
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+          
+            
                 var finddoctor = acontext.GetAll();
                 return View(finddoctor);
-            }
+            
         }
         [HttpGet]
         public ActionResult ProblemPost()
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+            
 
                 ConsumerRepository PPRepo = new ConsumerRepository();
                 ViewData["problemposts"] = PPRepo.GetAll();
@@ -122,7 +96,7 @@ namespace PharmaAssist2._0.Controllers
                 ProblemPost dm = new ProblemPost();
 
                 return View();
-            }
+          
 
         }
         [HttpPost]
@@ -148,27 +122,18 @@ namespace PharmaAssist2._0.Controllers
 
         public ActionResult MyAppointments()
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+           
+            
                 var finddoctor = ccontext.GetAll();
                 return View(finddoctor);
-            }
+            
         }
 
 
         [HttpGet]
         public ActionResult Appointment()
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+           
 
                 SlotRepository sl = new SlotRepository();
                 DoctorRepository dc = new DoctorRepository();
@@ -177,19 +142,14 @@ namespace PharmaAssist2._0.Controllers
                 ViewData["doctors"] = dc.GetAll();
 
                 return View();
-            }
+           
         }
 
         [HttpPost]
         public ActionResult Appointment(Appointment ap, int id)
         {
 
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Consumer"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+           
 
                 AppointmentRepository APRepo = new AppointmentRepository();
                 ConsumerRepository PPRepo = new ConsumerRepository();
@@ -199,7 +159,7 @@ namespace PharmaAssist2._0.Controllers
                 ap.DoctorId = y.Id;
                 ccontext.Insert(ap);
                 return RedirectToAction("Index");
-            }
+            
         }
 
     }

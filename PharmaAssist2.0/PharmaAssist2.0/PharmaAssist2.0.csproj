@@ -285,6 +285,8 @@
     <Content Include="Views\Consumer\Edit.cshtml" />
     <Content Include="Views\Consumer\MyAppointments.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Product\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />

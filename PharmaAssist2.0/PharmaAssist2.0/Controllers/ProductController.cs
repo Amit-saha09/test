@@ -19,6 +19,20 @@ namespace PharmaAssist2._0.Controllers
             return View(contex.GetAll());
         }
 
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SearchResult(string searchBox)
+        {
+
+            return View(contex.GetByName(searchBox));
+        }
+
+
         public ActionResult Details(int id)
         {
             return View(contex.Get(id));
