@@ -46,11 +46,19 @@ namespace PharmaAssist2._0.Controllers
             filename = Path.Combine(Server.MapPath("~/Image/"), filename);
             c.Imagefile.SaveAs(filename);
 
+<<<<<<< Updated upstream
 
             var x = log.Getregistared(Session["regemail"].ToString());
             c.LoginId = x.Id;
             context.Insert(c);
             return RedirectToAction("Index");
+=======
+            
+            var x = context.GetConsumerById((int)Session["logged_id"]);
+            c.LoginId = x.Id;
+            context.Insert(c);
+            return View(c);
+>>>>>>> Stashed changes
         }
 
         [HttpGet]
@@ -72,7 +80,12 @@ namespace PharmaAssist2._0.Controllers
             filename = Path.Combine(Server.MapPath("~/Image/"), filename);
             c.Imagefile.SaveAs(filename);
 
-            var x = context.GetConsumerById(Session["logged_id"].GetHashCode());
+            /*return Content(Session["logged_id"].ToString());*/
+            var x = context.GetConsumerById((int)Session["logged_id"]);
+            /*if (x==null)
+            {
+                return View();
+            }*/
             c.LoginId = x.Id;
 
             context.Update(c);
@@ -115,8 +128,14 @@ namespace PharmaAssist2._0.Controllers
             filename = Path.Combine(Server.MapPath("~/Image/"), filename);
             p.Imagefile.SaveAs(filename);
 
+<<<<<<< Updated upstream
             ConsumerRepository ccontex = new ConsumerRepository();
             var x = ccontex.GetConsumerById((int)Session["logged_id"]);
+=======
+            ConsumerRepository PPRepo = new ConsumerRepository();
+            
+            var x = PPRepo.GetConsumerById((int)Session["logged_id"]);
+>>>>>>> Stashed changes
             p.ConsumerId = x.Id;
             bcontext.Insert(p);
             return RedirectToAction("Index");
