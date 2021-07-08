@@ -17,6 +17,7 @@ namespace PharmaAssist2._0.Controllers
 
         public ActionResult DoctorAppointMent()
         {
+
             
                 Doctor p = new Doctor();
                 p = dr.Getuserinfo((int)Session["logged_Id"]);
@@ -31,7 +32,7 @@ namespace PharmaAssist2._0.Controllers
             
                 Consumer p = new Consumer();
 
-                p = cm.Getuserinfo((int)Session["logged_id"]);
+                p = cm.GetConsumerById((int)Session["logged_id"]);
 
 
 

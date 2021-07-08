@@ -15,13 +15,8 @@ namespace PharmaAssist2._0.Repository
 
         public Consumer GetConsumerById(int id)
         {
-            return this.contex.Consumers.Where(x => x.Id == id).FirstOrDefault();
+            return this.contex.Consumers.Where(x => x.LoginId == id).FirstOrDefault();
         }
-        public Consumer Getuserinfo(int id)
-        {
-            Consumer p = new Consumer();
-            p = this.contex.Consumers.Where(x => x.LoginId == id).FirstOrDefault();
-            return p;
-        }
+      
     }
 }

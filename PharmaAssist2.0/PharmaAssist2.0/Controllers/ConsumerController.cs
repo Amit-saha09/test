@@ -16,6 +16,7 @@ namespace PharmaAssist2._0.Controllers
         ProblemPostRepository bcontext = new ProblemPostRepository();
         DoctorRepository acontext = new DoctorRepository();
         AppointmentRepository ccontext = new AppointmentRepository();
+        LoginRepository log = new LoginRepository();
         // GET: Consumer
         public ActionResult Index()
         {
@@ -46,16 +47,17 @@ namespace PharmaAssist2._0.Controllers
             c.Imagefile.SaveAs(filename);
 
 
-            var x = context.GetConsumerById((int)Session["logged_id"]);
+            var x = log.Getregistared(Session["regemail"].ToString());
             c.LoginId = x.Id;
-            return View(c);
+            context.Insert(c);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
         
-                var p = context.Getuserinfo(id);
+                var p = context.GetConsumerById(id);
                 return View(context.Get(p.Id));
           
         }
@@ -113,8 +115,8 @@ namespace PharmaAssist2._0.Controllers
             filename = Path.Combine(Server.MapPath("~/Image/"), filename);
             p.Imagefile.SaveAs(filename);
 
-            ConsumerRepository PPRepo = new ConsumerRepository();
-            var x = PPRepo.GetConsumerByEmail(Session["logged_email"].ToString());
+            ConsumerRepository ccontex = new ConsumerRepository();
+            var x = ccontex.GetConsumerById((int)Session["logged_id"]);
             p.ConsumerId = x.Id;
             bcontext.Insert(p);
             return RedirectToAction("Index");
@@ -153,7 +155,7 @@ namespace PharmaAssist2._0.Controllers
 
                 AppointmentRepository APRepo = new AppointmentRepository();
                 ConsumerRepository PPRepo = new ConsumerRepository();
-                var x = PPRepo.GetConsumerById(Session["logged_id"].GetHashCode());
+                var x = PPRepo.GetConsumerById((int)Session["logged_id"]);
                 ap.ConsumerId = x.Id;
                 var y = acontext.Get(id);
                 ap.DoctorId = y.Id;

@@ -17,6 +17,7 @@ namespace PharmaAssist2._0.Controllers
         // GET: Order
         public ActionResult Add()
         {
+            ConsumerRepository con = new ConsumerRepository();
            
             OrderDetail od = new OrderDetail();
             Order o = new Order();
@@ -34,7 +35,8 @@ namespace PharmaAssist2._0.Controllers
                
 
             }
-            o.ConsumerId = (int)Session["logged_id"];
+            var x= con.GetConsumerByEmail(Session["logged_Email"].ToString());
+            o.ConsumerId = x.Id;
             o.InvoiceNumber = invoice;
             o.OrderDate = DateTime.Now;
             o.Totalprice = totalprice;
@@ -48,7 +50,7 @@ namespace PharmaAssist2._0.Controllers
                 od.InvoiceNumber = invoice;
                 od.ProductId = c.ProductId;
                 od.Quantity = c.Quantity;
-                od.ConsumerId = (int)Session["logged_id"];
+                od.ConsumerId = x.Id;
 
                 ordercontex.Insert(od);
 

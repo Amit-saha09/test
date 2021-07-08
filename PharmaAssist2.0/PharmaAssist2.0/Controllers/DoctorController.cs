@@ -26,12 +26,6 @@ namespace PharmaAssist2._0.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
 
               
                 SpecialistRepository db = new SpecialistRepository();
@@ -47,7 +41,7 @@ namespace PharmaAssist2._0.Controllers
 
 
             return View(combodata);
-            }
+            
 
         }
 
@@ -93,12 +87,7 @@ namespace PharmaAssist2._0.Controllers
         [HttpPost]
         public ActionResult Create(Doctor doc)
         {
-            if (Session["logged_id"] == null || Session["logged_type"] == null || !Session["logged_type"].Equals("Doctor"))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
+           
                 string filename = Path.GetFileNameWithoutExtension(doc.Imagefile.FileName);
                 string extention = Path.GetExtension(doc.Imagefile.FileName);
                 filename = filename + DateTime.Now.ToString("yyssmmfff") + extention;
@@ -109,13 +98,13 @@ namespace PharmaAssist2._0.Controllers
                 var log = new LoginRepository();
                 Login lo = new Login();
 
-                lo = log.Getthat(Session["regemail"].ToString());
+                lo = log.Getregistared(Session["regemail"].ToString());
                 doc.LoginId = lo.Id;
                 doc.Email = Session["regemail"].ToString();
                 contex.Insert(doc);
                 return RedirectToAction("Registration", "Login");
 
-            }
+            
           
 
 

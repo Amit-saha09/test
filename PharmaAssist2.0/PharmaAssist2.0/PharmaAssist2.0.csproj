@@ -138,6 +138,7 @@
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProblemPostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -217,6 +218,10 @@
     <Compile Include="Migrations\202107061948320_semiboot.cs" />
     <Compile Include="Migrations\202107061948320_semiboot.Designer.cs">
       <DependentUpon>202107061948320_semiboot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107070402211_error.cs" />
+    <Compile Include="Migrations\202107070402211_error.Designer.cs">
+      <DependentUpon>202107070402211_error.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -542,6 +547,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Logout\" />
+    <Folder Include="Views\ProblemPost\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -611,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107061948320_semiboot.resx">
       <DependentUpon>202107061948320_semiboot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107070402211_error.resx">
+      <DependentUpon>202107070402211_error.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
